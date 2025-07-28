@@ -1,5 +1,5 @@
 # Custom-App-Launcher
-A custom launcher where you can add .exe files and execute them
+A custom launcher created in Java, where you can add .exe files and execute them
 
 1. Execute the main java file
 2. Search the folder that contains the .exe file
