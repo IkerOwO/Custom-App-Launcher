@@ -7,4 +7,5 @@ A custom launcher created in Java, where you can add .exe files and execute them
 2. Search the folder that contains the .exe file that you want to add
 3. The .exe should appear on the launcher. Just click on the button to open it 
 
+# Currently the .exe files don't stay when you open the launcher again 
 # Made By Iker
