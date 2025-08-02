@@ -3,6 +3,7 @@ package com.Interface;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 import java.io.File;
@@ -13,29 +14,32 @@ public class Interface extends JFrame{
 	final JButton botonElegirCarpeta, themeButton;
 	
 	public Interface(){
-		setLayout(null); // Null para poder especificar X 
 		// Panel con scroll para los botones
         panelBotones = new JPanel();
         panelBotones.setLayout(new BoxLayout(panelBotones, BoxLayout.Y_AXIS));
-        JScrollPane scrollPane = new JScrollPane(panelBotones);
-
-        // Botón para elegir carpeta
+        panelBotones.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 10));
+        JScrollPane scrollPane = new JScrollPane(panelBotones); // Equivalente a un margin left de 20px
+       
+        // Barra para los botones de Theme y Agregar
+        //JPanel barraSuperior = new JPanel(null); // usamos null aquí para colocar libremente
+        //barraSuperior.setPreferredSize(new Dimension(1200, 60));        
+        
+        // Botón para elegir exe
         botonElegirCarpeta = new JButton("+");
         botonElegirCarpeta.addActionListener(e -> seleccionarExe());
         botonElegirCarpeta.setBackground(Color.WHITE);
-        botonElegirCarpeta.setBounds(1050,15,20,20);
-        botonElegirCarpeta.setBorder(null);
+        botonElegirCarpeta.setBounds(1110,5,50,50);
         
         themeButton = new JButton("Theme");
         themeButton.addActionListener(this::ChangeTheme);
         themeButton.setBackground(Color.WHITE);
-        themeButton.setBorder(null);
-        themeButton.setBounds(1099,10,80,30);
+        themeButton.setBounds(10,10,80,30);
         // Añadir botones (LO PODRIA HABER PUESTO DEBAJO DE CADA BOTON :3, PERO ME DA PEREZA)
         setLayout(new BorderLayout());
         add(botonElegirCarpeta);
         add(themeButton);
         add(scrollPane, BorderLayout.CENTER);
+        //add(barraSuperior);
         setVisible(true);
 	}
 
@@ -45,16 +49,25 @@ public class Interface extends JFrame{
             getContentPane().setBackground(Color.DARK_GRAY);
             themeButton.setBackground(Color.DARK_GRAY);
             themeButton.setForeground(Color.WHITE);
+            themeButton.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+            
             botonElegirCarpeta.setBackground(Color.DARK_GRAY);
             botonElegirCarpeta.setForeground(Color.WHITE);
+            botonElegirCarpeta.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+            
             panelBotones.setBackground(Color.DARK_GRAY);
             panelBotones.setForeground(Color.WHITE);
+            
         } else {
         	getContentPane().setBackground(Color.WHITE);
             themeButton.setBackground(Color.WHITE);
             themeButton.setForeground(Color.BLACK);
+            themeButton.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            
             botonElegirCarpeta.setBackground(Color.WHITE);
             botonElegirCarpeta.setForeground(Color.DARK_GRAY);
+            botonElegirCarpeta.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            
             panelBotones.setBackground(Color.WHITE);
             panelBotones.setForeground(Color.BLACK);
         }
@@ -92,12 +105,14 @@ public class Interface extends JFrame{
 			 JButton boton = new JButton(archivo.getName());
 			 boton.setAlignmentX(Component.LEFT_ALIGNMENT); // Centrar el botón
 			 boton.addActionListener(e -> ejecutarExe(archivo));
-			 panelBotones.add(Box.createVerticalStrut(10)); // Espaciado
+		     boton.setBackground(Color.WHITE);
+		     boton.setForeground(Color.BLACK);
+			 panelBotones.add(Box.createVerticalStrut(50), Box.createHorizontalStrut(10)); // Espaciado
 			 panelBotones.add(boton);
 		 }
         panelBotones.revalidate(); // Refrescar el panel
         panelBotones.repaint();
-	}
+	 }
 	
 	private void ejecutarExe(File archivo) {
         try {
