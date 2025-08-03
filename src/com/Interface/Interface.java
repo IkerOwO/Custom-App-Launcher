@@ -20,9 +20,8 @@ public class Interface extends JFrame{
         panelBotones.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 10));
         JScrollPane scrollPane = new JScrollPane(panelBotones); // Equivalente a un margin left de 20px
        
-        // Barra para los botones de Theme y Agregar
-        //JPanel barraSuperior = new JPanel(null); // usamos null aquí para colocar libremente
-        //barraSuperior.setPreferredSize(new Dimension(1200, 60));        
+        // Panel Para los botones de Theme y Añadir
+        JLayeredPane layeredPanel = getLayeredPane();      
         
         // Botón para elegir exe
         botonElegirCarpeta = new JButton("+");
@@ -36,8 +35,10 @@ public class Interface extends JFrame{
         themeButton.setBounds(10,10,80,30);
         // Añadir botones (LO PODRIA HABER PUESTO DEBAJO DE CADA BOTON :3, PERO ME DA PEREZA)
         setLayout(new BorderLayout());
-        add(botonElegirCarpeta);
-        add(themeButton);
+        //add(botonElegirCarpeta);
+        //add(themeButton);
+        layeredPanel.add(botonElegirCarpeta, JLayeredPane.PALETTE_LAYER);
+        layeredPanel.add(themeButton, JLayeredPane.PALETTE_LAYER);
         add(scrollPane, BorderLayout.CENTER);
         //add(barraSuperior);
         setVisible(true);
